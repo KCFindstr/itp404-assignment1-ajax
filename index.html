@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Assignment 1</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="main.js"></script>
+</head>
+<body>
+	<div id="vue-app">
+		<form onsubmit="return startSearch()">
+			<input type="text" v-model="search"/>
+			<button type="submit">Submit</button>
+		</form>
+
+		<div v-if="result == 'loading'" class="loader">Loading...</div>
+		<h1 v-else-if="result != null">{{ result }}</h1>
+		<table v-else>
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Author</th>
+					<th>Score</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="thread in response">
+					<td>
+						<a :href="thread.url" target="_blank">{{ thread.title }}</a>
+					</td>
+					<td>
+						{{ thread.author }}
+					</td>
+					<td>
+						{{ thread.score }}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
